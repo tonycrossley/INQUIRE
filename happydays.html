@@ -1,0 +1,469 @@
+ANTHONY CROSSLEY   B00717752 
+ 
+ 
+IN UIRE 
+REVIEW, ANALYSIS AND MANAGEMENT SYSTEM FOR 
+FORENSIC COMPUTING 
+ 
+ANTHONY CROSSLEY - B00717752 
+MENTOR - ROY STERRIT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+COM668 | CODE DOCUMENT 
+BSc(Hons) COMPUTING SCIENCE 
+SCHOOL OF COMPUTING 
+ 
+ 
+ 
+ 
+1 
+ANTHONY CROSSLEY   B00717752 
+CODE DICTIONARY 
+index.html ......................................................................................................................................................................... 2 
+style.css ............................................................................................................................................................................. 4 
+ocrAPI.java ........................................................................................................................................................................ 8 
+translateAPI.java .............................................................................................................................................................. 9 
+extraction.java ................................................................................................................................................................ 11 
+translateAPI.gs................................................................................................................................................................ 13 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+2 
+ANTHONY CROSSLEY   B00717752 
+index.html 
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <title>INQUIRE</title> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" type="text/css" href="style.css"> 
+    </head> 
+    <body> 
+ 
+        <h2><img src="INQUIRElogo.png" alt="INQUIRE"></h2> 
+ 
+        <section> 
+            <nav> 
+                <h1>UPLOADED DOCUMENTS</h1> 
+              <div class="items"> 
+  <ul> 
+    <li id = "test" onclick="openText()" tabindex="1" >PROTOTYPE DOCUMENT </li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+3 
+ANTHONY CROSSLEY   B00717752 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+    <li tabindex="1">DOCUMENT</li> 
+     
+      </ul> 
+</div> 
+                <button class="button" style="vertical-align:middle"><span>UPLOAD </span></button> 
+            </nav> 
+            <article> 
+                <h1>DOCUMENT FOR REVIEW</h1> 
+                <p><iframe id ="iframe" src=""></iframe></p> 
+                <button id = translate onclick="openText()" class="button" style="vertical-
+align:middle"><span>OCR </span></button> 
+                <button id = translate onclick="translateText()" class="button" style="vertical-
+align:middle"><span>TRANSLATE </span></button> 
+                <button id = translate onclick="keyTerm()" class="button" style="vertical-
+align:middle"><span>KEY TERM ANALYSIS </span></button> 
+            </article> 
+        </section> 
+ 
+    </body> 
+    <script> 
+function openText() { 
+document.getElementById('iframe').src = "output.html";   
+} 
+function translateText() { 
+document.getElementById('iframe').src = "translationOutput.html";   
+} 
+function keyTerm() { 
+document.getElementById('iframe').src = "keywordsOutput.html";   
+} 
+4 
+ANTHONY CROSSLEY   B00717752 
+</script> 
+</html> 
+style.css 
+* { 
+    box-sizing: border-box; 
+} 
+ 
+body { 
+    font-family: Arial, Helvetica, sans-serif; 
+} 
+ 
+ 
+header { 
+    background-color: white; 
+    padding: 30px; 
+    text-align: center; 
+    font-size: 35px; 
+    color: white; 
+} 
+ 
+ 
+nav { 
+    float: left; 
+    width: 25%; 
+    background: lightcoral; 
+    padding: 30px; 
+    border: 5px solid black 
+} 
+ 
+ 
+nav ul { 
+5 
+ANTHONY CROSSLEY   B00717752 
+    text-align: center; 
+    list-style-type: none; 
+    background: white; 
+    padding: 15px; 
+    border: 5px solid black 
+} 
+ 
+article { 
+    float: left; 
+    padding: 30px; 
+    width: 75%; 
+    background-color: whitesmoke;  
+    border: 5px solid black 
+} 
+ 
+ 
+section:after { 
+    content: ""; 
+    display: table; 
+    clear: both; 
+} 
+ 
+ 
+ 
+ 
+@media (max-width: 600px) { 
+    nav, article { 
+        width: 100%; 
+        height: auto; 
+ 
+    } 
+6 
+ANTHONY CROSSLEY   B00717752 
+} 
+ 
+.button { 
+    display: inline-block; 
+    border-radius: 10px; 
+    background-color: white; 
+    border: 5px solid lightcoral; 
+    color: lightcoral; 
+    text-align: center; 
+    font-size: 16px; 
+    padding: 10px; 
+    width: 150px; 
+    transition: all 0.5s; 
+    cursor: pointer; 
+    margin: 5px; 
+} 
+ 
+.button span { 
+    cursor: pointer; 
+    display: inline-block; 
+    position: relative; 
+    transition: 0.5s; 
+} 
+ 
+.button span:after { 
+    content: '\00bb'; 
+    position: absolute; 
+    opacity: 0; 
+    top: 0; 
+    right: -20px; 
+    transition: 0.5s; 
+7 
+ANTHONY CROSSLEY   B00717752 
+} 
+ 
+.button:hover span { 
+    padding-right: 25px; 
+} 
+ 
+.button:hover span:after { 
+    opacity: 1; 
+    right: 0; 
+} 
+ 
+iframe{ 
+    width:100% ; 
+    height:345px ; 
+    frameborder:10 ; 
+    background-color: white; 
+    border: 5px solid lightcoral 
+} 
+modal { 
+    display: none;  
+    display: none;  
+    position: fixed; 
+    z-index: 1;  
+    left: 0; 
+    top: 0; 
+    width: 100%;  
+    height: 100%;  
+    overflow: auto;  
+    background-color: rgb(0,0,0);  
+    background-color: rgba(0,0,0,0.4);  
+} 
+8 
+ANTHONY CROSSLEY   B00717752 
+ 
+.modal-content { 
+    background-color: #fefefe; 
+    margin: 15% auto; /* 15% from the top and centered */ 
+    padding: 20px; 
+    border: 1px solid #888; 
+    width: 80%; /* Could be more or less, depending on screen size */ 
+} 
+ 
+close { 
+    color: #aaa; 
+    float: right; 
+    font-size: 28px; 
+    font-weight: bold; 
+} 
+ 
+.close:hover, 
+.close:focus { 
+    color: black; 
+    text-decoration: none; 
+    cursor: pointer; 
+} 
+li:focus { 
+  background: lightcoral; 
+} 
+ 
+ocrAPI.java(https://github.com/tesseract-ocr/tesseract/wiki/APIExample) 
+import java.io.File; 
+import java.io.FileNotFoundException; 
+import net.sourceforge.tess4j.Tesseract; 
+import net.sourceforge.tess4j.TesseractException; 
+9 
+ANTHONY CROSSLEY   B00717752 
+import java.io.PrintWriter; 
+import java.io.UnsupportedEncodingException; 
+ 
+public class ocrAPI { 
+ 
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException { 
+        Tesseract tesseract = new Tesseract(); 
+        try { 
+ 
+            tesseract.setDatapath("C:\\Program Files\\Tess4J\\tessdata"); 
+ 
+            String OCRtext = tesseract.doOCR(new File("C:\\Program Files\\Tess4J\\INPUT.png")); 
+ 
+            PrintWriter writer = new PrintWriter("output.html", "UTF-8"); 
+            writer.println(OCRtext); 
+            writer.close(); 
+ 
+        } catch (TesseractException e) { 
+            e.printStackTrace(); 
+        } 
+ 
+    } 
+ 
+} 
+translateAPI.java (https://cloud.google.com/translate/docs/basic/discovering-supported-
+languages) 
+import java.io.BufferedReader; 
+import java.io.File; 
+import java.io.IOException; 
+import java.io.InputStreamReader; 
+import java.io.PrintWriter; 
+10 
+ANTHONY CROSSLEY   B00717752 
+import java.net.HttpURLConnection; 
+import java.net.URL; 
+import java.net.URLEncoder; 
+import java.util.Scanner; 
+ 
+public class translateAPI { 
+ 
+    public static void main(String[] args) throws IOException { 
+        File file = new File("/Users/tonyc/Documents/NetBeansProjects/INQUIRE/output.html"); 
+        Scanner scanny = new Scanner(file); 
+        String fileContent = ""; 
+        while (scanny.hasNextLine()) { 
+            fileContent = fileContent.concat(scanny.nextLine() + "\n"); 
+        } 
+        String text = fileContent; 
+            PrintWriter writer = new PrintWriter("translationOutput.html", "UTF-8"); 
+            writer.println("Translated text: " + translate("en", "es", fileContent)); 
+            writer.close(); 
+    } 
+ 
+             
+    private static String translate(String langFrom, String langTo, String text) throws IOException { 
+        String urlStr = "https://script.google.com/macros/s/AKfycbw35WvcmvA7iG28WGR7DW6CkgSS-
+NVb8hk8rQ3zmwDTWjWOCGYb/exec" 
+                + "?q=" + URLEncoder.encode(text, "UTF-8") 
+                + "&target=" + langTo 
+                + "&source=" + langFrom; 
+        URL url = new URL(urlStr); 
+        StringBuilder response = new StringBuilder(); 
+        HttpURLConnection con = (HttpURLConnection) url.openConnection(); 
+        con.setRequestProperty("User-Agent", "Mozilla/5.0"); 
+11 
+ANTHONY CROSSLEY   B00717752 
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream())); 
+        String inputLine; 
+        while ((inputLine = in.readLine()) != null) { 
+            response.append(inputLine); 
+        } 
+        in.close(); 
+        return response.toString(); 
+    } 
+ 
+} 
+ 
+extraction.java 
+import java.io.BufferedReader; 
+import java.io.FileNotFoundException; 
+import java.io.FileReader; 
+import java.io.IOException; 
+import java.io.PrintWriter; 
+import java.io.UnsupportedEncodingException; 
+ 
+ 
+public class extraction { 
+ 
+public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException 
+{ 
+    double count = 0,countBuffer=0,countLine=0; 
+    String lineNumber = ""; 
+    String filePath = "C:\\Users\\tonyc\\Documents\\NetBeansProjects\\INQUIRE\\output.txt"; 
+    BufferedReader br; 
+    String inputSearch = "dog"; 
+    String line = ""; 
+ 
+12 
+ANTHONY CROSSLEY   B00717752 
+    try { 
+        br = new BufferedReader(new FileReader(filePath)); 
+        try { 
+            while((line = br.readLine()) != null) 
+            { 
+                countLine++; 
+                //System.out.println(line); 
+                String[] words = line.split(" "); 
+ 
+                for (String word : words) { 
+                  if (word.equals(inputSearch)) { 
+                    count++; 
+                    countBuffer++; 
+                  } 
+                } 
+ 
+                if(countBuffer > 0) 
+                { 
+                    countBuffer = 0; 
+                    lineNumber += countLine + ","; 
+                } 
+ 
+            } 
+            br.close(); 
+        } catch (IOException e) { 
+            // TODO Auto-generated catch block 
+            e.printStackTrace(); 
+        } 
+    } catch (FileNotFoundException e) { 
+        // TODO Auto-generated catch block 
+        e.printStackTrace(); 
+13 
+ANTHONY CROSSLEY   B00717752 
+    } 
+    PrintWriter writer = new PrintWriter("keywordsOutput.html", "UTF-8"); 
+            writer.println("The word " + inputSearch + " was found "+count + " times, on line " +lineNumber ); 
+            writer.close(); 
+} 
+} 
+translateAPI.gs 
+var mock = { 
+  parameter:{ 
+    q:'hello', 
+    source:'en', 
+    target:'fr' 
+  } 
+}; 
+ 
+ 
+function doGet(e) { 
+  e = e || mock; 
+ 
+  var sourceText = '' 
+  if (e.parameter.q){ 
+    sourceText = e.parameter.q; 
+  } 
+ 
+  var sourceLang = ''; 
+  if (e.parameter.source){ 
+    sourceLang = e.parameter.source; 
+  } 
+ 
+  var targetLang = 'en'; 
+  if (e.parameter.target){ 
+14 
+ANTHONY CROSSLEY   B00717752 
+    targetLang = e.parameter.target; 
+  } 
+ 
+  var translatedText = LanguageApp.translate(sourceText, sourceLang, targetLang, {contentType: 'html'}); 
+ 
+  return ContentService.createTextOutput(translatedText).setMimeType(ContentService.MimeType.JSON); 
+} 
+

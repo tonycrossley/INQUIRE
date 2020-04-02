@@ -12,42 +12,66 @@
     </head>
     <body>
 
-        <%
-            String id = (request.getParameter("id"));
-
+        <%  
+            String id=(request.getParameter("id"));
+            
             Blob file = null;
-            byte[] fileData = null;
+            byte[ ] fileData = null ;
 
-            try {
-                Db_Connection dbconn = new Db_Connection();
-                Connection conn = dbconn.Connection();
 
-                String sqlString = "SELECT file FROM files WHERE id = '" + id + "'";
-                Statement myStatement = conn.createStatement();
+            Connection myConn = null;
+                Statement myStmt = null;
+                ResultSet myRs = null;
 
-                ResultSet rs = myStatement.executeQuery(sqlString);
+                InputStream input = null;
+                FileOutputStream output = null;
 
-                if (rs.next()) {
-                    file = rs.getBlob("file");
-                    fileData = file.getBytes(1, (int) file.length());
+                try {
+                        // 1. Get a connection to database
+                        Db_Connection dbconn=new Db_Connection();
+            Connection myconnection= dbconn.Connection();
 
-                } else {
-                    out.println("file not found!");
-                    return;
+                        // 2. Execute statement
+                        myStmt = myconnection.createStatement();
+                        String sql = "select file from files where title='test3'";
+                        myRs = myStmt.executeQuery(sql);
+			
+                        // 3. Set up a handle to the file
+                        File theFile = new File("realtitties.pdf");
+                        output = new FileOutputStream(theFile);
+
+                        if (myRs.next()) {
+
+                                input = myRs.getBinaryStream("file"); 
+                                System.out.println("Reading resume from database...");
+                                System.out.println(sql);
+				
+                                byte[] buffer = new byte[1024];
+                                while (input.read(buffer) > 0) {
+                                        output.write(buffer);
+                                }
+				
+                                System.out.println("\nSaved to file: " + theFile.getAbsolutePath());
+				
+                                System.out.println("\nCompleted successfully!");				
+                        }
+
+                } catch (Exception exc) {
+                        exc.printStackTrace();
+                } finally {
+                        if (input != null) {
+                                input.close();
+                        }
+
+                        if (output != null) {
+                                output.close();
+                        }
+			
+			
                 }
-
-                response.setContentType("application/pdf");
-                response.setHeader("Content-Disposition", "inline");
-                response.setContentLength(fileData.length);
-
-                OutputStream output = response.getOutputStream();
-                output.write(fileData);
-
-                output.flush();
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        }
+                
+            
         %>
 
         <br><br>

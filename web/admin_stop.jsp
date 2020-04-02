@@ -11,16 +11,16 @@
         <img src="INQUIRElogo.png" alt="INQUIRE" width="100%">
 
         <ul>
-            <li><a href="upload_form.jsp">REVIEW</a></li>
+            <li><a href="admin_login_form.jsp">REVIEW</a></li>
             <li><a href="#about">ABOUT US</a></li>
             <li><a href="#help">HELP</a></li>
-            <li style="float:right"><a href="logout.jsp">SIGN OUT</a></li>
+            <li style="float:right"><a href="admin_login_form.jsp">SIGN IN</a></li>
         </ul>
 
         <div class="background">
             <div class="transbox">
-                <p>WELCOME TO INQUIRE.</P>
-                <P>PLEASE SELECT 'REVIEW' TO INVESTIGATE.</p>
+                <p>AN EMAIL HAS BEEN SENT TO THE PREVIOUSLY ENTERED EMAIL ADDRESS.</P>
+                <P>PLEASE FOLLOW THE INSTRUCTIONS PROVIDED IN THE EMAIL TO BEING YOUR INVESTIGATION.</p>
             </div>
         </div>
 

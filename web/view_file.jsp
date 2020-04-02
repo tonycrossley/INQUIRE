@@ -11,12 +11,13 @@
         <title>View File</title>
     </head>
     <body>
-        
+
         <%  
             String id=(request.getParameter("id"));
             
             Blob file = null;
             byte[ ] fileData = null ;
+
 
             try
             {    
@@ -32,6 +33,7 @@
                 {
                     file = rs.getBlob("file");
                     fileData = file.getBytes(1,(int)file.length());
+                    
                 } else 
                 {
                     out.println("file not found!");
@@ -49,9 +51,9 @@
                 
             } catch (SQLException ex) {Logger.getLogger(Logger.class.getName()).log(Level.SEVERE, null, ex);} 
         %>
-        
+
         <br><br>
         <a href="main_page.jsp">Go to Main Page...</a>        
-                      
+
     </body>
 </html>

@@ -32,28 +32,40 @@
         </ul>
 
         <div class="background">
-            <div class="transbox" width="50px" height="50px">
+            <div class="transbox" width="75px" height="75px">
                 <body>
 
                     <jsp:useBean id="user" scope="request" class="beans.User"></jsp:useBean>
-                        <form action="LoginController" method="post">
+                        <form action="AdminRegisterController" method="post">
                             <div class="login-box">
-                                <h1>SIGN IN</h1>
+                                <h1>REGISTER</h1>
                                 <div class="textbox">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" name="user" value="<jsp:getProperty name="user" property="user"/>" placeholder="Username" >
+                                    <input type="text" placeholder= "Email Address" name="first_name" value="<jsp:getProperty name="user" property="first_name"/>">
+                            </div>
+
+                            <div class="textbox">
+                                <i class="far fa-eye"></i></i>
+                                <input type="text" placeholder = "Admin User? (Y/N)" maxlength = "1" name="last_name" value="<jsp:getProperty name="user" property="last_name"/>">
+                            </div>
+
+                            <div class="textbox">
+                                <i class="far fa-address-card"></i></i>
+                                <input type="text" placeholder = "Username" name="user" value="<jsp:getProperty name="user" property="user"/>">
                             </div>
 
                             <div class="textbox">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" name="pwd" value="<jsp:getProperty name="user" property="pwd"/>" placeholder = "Password" >
+                                <input type="password" placeholder = "Password" name="pwd" value="<jsp:getProperty name="user" property="pwd"/>">
                             </div>
 
-                            <input type="submit" value="SIGN IN" class="btn">
+
+
+                            <input type="reset" value="RESET" class="btn" />
+                            <input type="submit" value="REGISTER ADMIN" class="btn">
                         </div>
             </div>
     </body>
-</form>
 </div>
 </body>
 

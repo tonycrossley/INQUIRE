@@ -19,10 +19,11 @@
         <img src="INQUIRElogo.png" alt="INQUIRE" width="100%">
 
         <ul>
-            <li><a class="active" href="upload_form.jsp">REVIEW</a></li>
+            <li><a href="admin_upload_form.jsp">REVIEW</a></li>
             <li><a href="#about">ABOUT US</a></li>
             <li><a href="#help">HELP</a></li>
             <li style="float:right"><a href="logout.jsp">SIGN OUT</a></li>
+            <li style="float:right"><a href="admin_register_new_user.jsp">ADD NEW USER</a></li>
         </ul>
 
     </body>
@@ -37,7 +38,7 @@
 
         <table id="docTable" border="1" width="25%" cellpadding="5">
             <thead> 
-            <th colspan="6"><img src="https://image.flaticon.com/icons/svg/1159/1159641.svg" height="16px" width="16px" > | <input type="text" id="filterSearch" onkeyup="filter()" placeholder="Filter by Filename..." title="Filter"></th>   
+            <th colspan="7"><img src="https://image.flaticon.com/icons/svg/1159/1159641.svg" height="16px" width="16px" > | <input type="text" id="filterSearch" onkeyup="filter()" placeholder="Filter by Filename..." title="Filter"></th>   
 
             </thead>
 
@@ -45,9 +46,7 @@
 
                 <tr>
 
-                    <td><center><b>FILENAME</b></center><td><center><b>DOCID</b></center></td><td><center><b>NATIVE FILE</b></center></td><td><center><b>OCR FILE</b></center></td><td><center><b>TRANSLATE TEXT</b></center></td><td><center><b>KEY TERM ANALYSIS</b></center></td>       
-            </tr>
-
+                    <td><center><b>FILENAME</b></center><td><center><b>DOCID</b></center></td><td><center><b>NATIVE FILE</b></center></td><td><center><b>OCR FILE</b></center></td><td><center><b>TRANSLATE TEXT</b></center></td><td><center><b>KEY TERM ANALYSIS</b></center></td><td><center><b>REMOVE DOCUMENT</b></center></td>       </tr>
 
 
             <%
@@ -74,11 +73,14 @@
                 <td><center><%out.print(rs.getString("title")); %></center></td>
             <td><center><%out.print(rs.getString("id")); %></center></td>
             <td><center><a href="view_file.jsp?id=<%out.print(rs.getString("id"));%>"><img src="https://image.flaticon.com/icons/svg/32/32743.svg" height="25px" weight="25px"> </a></center></td>
-            <td><center><button onclick="openText()" class="button" style="vertical-align:middle"><span><img src="https://i.pinimg.com/originals/8e/81/fc/8e81fce56cee548c7cc44d1a985657b7.png" height="20px" weight="20px"> </span></button></center></td>
+            <td><center><button onclick="translateText()" class="button" style="vertical-align:middle"><span><img src="https://i.pinimg.com/originals/8e/81/fc/8e81fce56cee548c7cc44d1a985657b7.png" height="20px" weight="20px"> </span></button></center></td>
             <td><center><button onclick="translateText()" class="button" style="vertical-align:middle"><span><img src="https://image.flaticon.com/icons/svg/1373/1373419.svg" height="20px" weight="20px"> </span></button></center></td>
-            <td><center><button onclick="keyTerm()" class="button" style="vertical-align:middle"><span><img src="https://getdrawings.com/free-icon-bw/bar-chart-icon-14.png" height="20px" weight="20px"> </span></button></center></td>
+            <td><center><button onclick="translateText()" class="button" style="vertical-align:middle"><span><img src="https://getdrawings.com/free-icon-bw/bar-chart-icon-14.png" height="20px" weight="20px"> </span></button></center></td>
+            <td><center><button onclick="translateText()" class="button" style="vertical-align:middle"><span><img src="https://image.flaticon.com/icons/png/512/61/61848.png" height="20px" weight="20px"> </span></button></center></td>
 
             </tr>
+
+
             <%
                 }
             %>
@@ -136,14 +138,16 @@
 <script>
 //FUNCTIONS FOR OCR/TRANSLATE/KEY TERMS
     function openText() {
-        document.getElementById('iframe').src = "beatlestxt.txt";
+        controllers.ReadFile.main(new String[0]);
     }
-
+    function loginpage() {
+        document.getElementById('iframe').src = "LoginForm.java";
+    }
     function translateText() {
-        document.getElementById('iframe').src = "beatlestranslation.txt";
+        document.getElementById('iframe').src = "translationOutput.html";
     }
     function keyTerm() {
-        document.getElementById('iframe').src = "beatleskeywords.txt";
+        document.getElementById('iframe').src = "keywordsOutput.html";
     }
 
 //UPLOAD DOCUMENT

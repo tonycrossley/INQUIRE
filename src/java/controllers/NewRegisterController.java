@@ -10,7 +10,7 @@ import javax.servlet.RequestDispatcher;
 import beans.User;
 import javax.servlet.http.HttpSession;
 
-public class RegisterController extends HttpServlet {
+public class NewRegisterController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,7 +29,7 @@ public class RegisterController extends HttpServlet {
             out.println("<br>");
             out.println("<br>");
             out.println("<center>Great!!!</center>");
-            RequestDispatcher rd = request.getRequestDispatcher("login_form.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("admin_successfully.jsp");
             rd.forward(request, response);
         } finally {
             out.close();

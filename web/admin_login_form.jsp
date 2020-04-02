@@ -36,24 +36,23 @@
                 <body>
 
                     <jsp:useBean id="user" scope="request" class="beans.User"></jsp:useBean>
-                        <form action="LoginController" method="post">
+                        <form action="AdminLoginController" method="post">
                             <div class="login-box">
                                 <h1>SIGN IN</h1>
                                 <div class="textbox">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" name="user" value="<jsp:getProperty name="user" property="user"/>" placeholder="Username" >
+                                    <input type="text" name="user" value="<jsp:getProperty name="user" property="user"/>" placeholder="Username">
                             </div>
 
                             <div class="textbox">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" name="pwd" value="<jsp:getProperty name="user" property="pwd"/>" placeholder = "Password" >
+                                <input type="password" name="pwd" value="<jsp:getProperty name="user" property="pwd"/>" placeholder = "Password">
                             </div>
 
-                            <input type="submit" value="SIGN IN" class="btn">
+                            <input type="submit" value="SIGN IN ADMIN" class="btn">
                         </div>
             </div>
     </body>
-</form>
 </div>
 </body>
 

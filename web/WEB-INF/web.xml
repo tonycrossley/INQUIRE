@@ -5,16 +5,40 @@
         <servlet-class>controllers.LoginController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AdminLoginController</servlet-name>
+        <servlet-class>controllers.AdminLoginController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>controllers.RegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminRegisterController</servlet-name>
+        <servlet-class>controllers.AdminRegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewRegisterController</servlet-name>
+        <servlet-class>controllers.NewRegisterController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AdminLoginController</servlet-name>
+        <url-pattern>/AdminLoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/RegisterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminRegisterController</servlet-name>
+        <url-pattern>/AdminRegisterController</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>NewRegisterController</servlet-name>
+        <url-pattern>/NewRegisterController</url-pattern>
     </servlet-mapping>
      <servlet>
         <servlet-name>UploadFileController</servlet-name>

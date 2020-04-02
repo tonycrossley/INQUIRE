@@ -16,7 +16,7 @@ public class User
         first_name="";
         last_name="";
         user="";
-        pwd="";
+        pwd="Fmdm66JfLv";
     }        
  
     //----------------------------------//

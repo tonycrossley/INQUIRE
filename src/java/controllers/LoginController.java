@@ -24,6 +24,7 @@ public class LoginController extends HttpServlet {
 
             if (User.LoginUser(request.getParameter("user"), request.getParameter("pwd"))) {
                 User us = new User();
+
                 us.setUser(String.valueOf(request.getParameter("user")));
                 us.GetUser();
 
@@ -33,8 +34,8 @@ public class LoginController extends HttpServlet {
                 RequestDispatcher rd1 = request.getRequestDispatcher("welcome_page.jsp");
                 rd1.forward(request, response);
             } else {
-                out.println("Either username or password is incorrect!");
-                out.println("<a href=\"login_form.jsp\">Try again...</a>");
+                RequestDispatcher rd2 = request.getRequestDispatcher("failed_login.jsp");
+                rd2.forward(request, response);
             }
         } finally {
             out.close();

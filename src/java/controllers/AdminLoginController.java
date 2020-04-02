@@ -10,7 +10,7 @@ import javax.servlet.RequestDispatcher;
 import beans.User;
 import javax.servlet.http.HttpSession;
 
-public class RegisterController extends HttpServlet {
+public class AdminLoginController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -19,18 +19,24 @@ public class RegisterController extends HttpServlet {
         try {
             User user = new User();
 
-            user.setFirst_name(request.getParameter("first_name"));
-            user.setLast_name(request.getParameter("last_name"));
             user.setUser(request.getParameter("user"));
             user.setPwd(request.getParameter("pwd"));
 
-            user.RegisterUser();
+            if (User.LoginUser(request.getParameter("user"), request.getParameter("pwd"))) {
+                User us = new User();
 
-            out.println("<br>");
-            out.println("<br>");
-            out.println("<center>Great!!!</center>");
-            RequestDispatcher rd = request.getRequestDispatcher("login_form.jsp");
-            rd.forward(request, response);
+                us.setUser(String.valueOf(request.getParameter("user")));
+                us.GetUser();
+
+                HttpSession sessionUser = request.getSession();
+                sessionUser.setAttribute("user", us.getUser());
+
+                RequestDispatcher rd1 = request.getRequestDispatcher("admin_welcome_page.jsp");
+                rd1.forward(request, response);
+            } else {
+                RequestDispatcher rd2 = request.getRequestDispatcher("admin_failed_login.jsp");
+                rd2.forward(request, response);
+            }
         } finally {
             out.close();
         }
