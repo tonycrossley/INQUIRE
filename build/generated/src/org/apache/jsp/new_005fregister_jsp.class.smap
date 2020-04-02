@@ -1,0 +1,20 @@
+SMAP
+new_005fregister_jsp.java
+JSP
+*S JSP
+*F
++ 0 new_register.jsp
+new_register.jsp
+*L
+1,37:44
+38:81,10
+39,5:91
+44:96,3
+45,4:99
+49:103,3
+50,4:106
+54:110,3
+55,4:113
+59:117,3
+60,18:120
+*E

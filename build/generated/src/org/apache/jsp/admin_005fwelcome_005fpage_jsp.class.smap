@@ -1,0 +1,12 @@
+SMAP
+admin_005fwelcome_005fpage_jsp.java
+JSP
+*S JSP
+*F
++ 0 admin_welcome_page.jsp
+admin_welcome_page.jsp
+*L
+1,25:45
+26,9:71
+34,54:80
+*E
